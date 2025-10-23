@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: b67ca13d09f9a4d48819995310c924af
+timeCreated: 1517901386
+licenseType: Store
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Crawler
+    100002: //RootNode
+    100004: Crawler_eye_ctrl
+    100006: Crawler_eye_jt
+    100008: Crawler_L_Back_leg_01_jt
+    100010: Crawler_L_Back_leg_02_ctrl
+    100012: Crawler_L_Back_leg_02_jt
+    100014: Crawler_L_Back_leg_03_ctrl
+    100016: Crawler_L_Back_leg_03_jt
+    100018: Crawler_L_Back_leg_04_ctrl
+    100020: Crawler_L_Back_leg_04_jt
+    100022: Crawler_L_Front_leg_01_jt
+    100024: Crawler_L_Front_leg_02_ctrl
+    100026: Crawler_L_Front_leg_02_jt
+    100028: Crawler_L_Front_leg_03_ctrl
+    100030: Crawler_L_Front_leg_03_jt
+    100032: Crawler_L_Front_leg_04_ctrl
+    100034: Crawler_L_Front_leg_04_jt
+    100036: Crawler_Master_ctrl
+    100038: Crawler_Master_jt
+    100040: Crawler_R_Back_leg_01_jt
+    100042: Crawler_R_Back_leg_02_ctrl
+    100044: Crawler_R_Back_leg_02_jt
+    100046: Crawler_R_Back_leg_03_ctrl
+    100048: Crawler_R_Back_leg_03_jt
+    100050: Crawler_R_Back_leg_04_ctrl
+    100052: Crawler_R_Back_leg_04_jt
+    100054: Crawler_R_Front_leg_01_jt
+    100056: Crawler_R_Front_leg_02_ctrl
+    100058: Crawler_R_Front_leg_02_jt
+    100060: Crawler_R_Front_leg_03_ctrl
+    100062: Crawler_R_Front_leg_03_jt
+    100064: Crawler_R_Front_leg_04_ctrl
+    100066: Crawler_R_Front_leg_04_jt
+    100068: Crawler_root_ctrl
+    100070: Crawler_root_jt
+    100072: Crawler_Weapon
+    100074: L_Back_leg_IK01
+    100076: L_Back_leg_IK02
+    100078: L_Front_leg_IK01
+    100080: L_Front_leg_IK02
+    100082: R_Back_leg_IK01
+    100084: R_Back_leg_IK02
+    100086: R_Front_leg_IK01
+    100088: R_Front_leg_IK02
+    400000: Crawler
+    400002: //RootNode
+    400004: Crawler_eye_ctrl
+    400006: Crawler_eye_jt
+    400008: Crawler_L_Back_leg_01_jt
+    400010: Crawler_L_Back_leg_02_ctrl
+    400012: Crawler_L_Back_leg_02_jt
+    400014: Crawler_L_Back_leg_03_ctrl
+    400016: Crawler_L_Back_leg_03_jt
+    400018: Crawler_L_Back_leg_04_ctrl
+    400020: Crawler_L_Back_leg_04_jt
+    400022: Crawler_L_Front_leg_01_jt
+    400024: Crawler_L_Front_leg_02_ctrl
+    400026: Crawler_L_Front_leg_02_jt
+    400028: Crawler_L_Front_leg_03_ctrl
+    400030: Crawler_L_Front_leg_03_jt
+    400032: Crawler_L_Front_leg_04_ctrl
+    400034: Crawler_L_Front_leg_04_jt
+    400036: Crawler_Master_ctrl
+    400038: Crawler_Master_jt
+    400040: Crawler_R_Back_leg_01_jt
+    400042: Crawler_R_Back_leg_02_ctrl
+    400044: Crawler_R_Back_leg_02_jt
+    400046: Crawler_R_Back_leg_03_ctrl
+    400048: Crawler_R_Back_leg_03_jt
+    400050: Crawler_R_Back_leg_04_ctrl
+    400052: Crawler_R_Back_leg_04_jt
+    400054: Crawler_R_Front_leg_01_jt
+    400056: Crawler_R_Front_leg_02_ctrl
+    400058: Crawler_R_Front_leg_02_jt
+    400060: Crawler_R_Front_leg_03_ctrl
+    400062: Crawler_R_Front_leg_03_jt
+    400064: Crawler_R_Front_leg_04_ctrl
+    400066: Crawler_R_Front_leg_04_jt
+    400068: Crawler_root_ctrl
+    400070: Crawler_root_jt
+    400072: Crawler_Weapon
+    400074: L_Back_leg_IK01
+    400076: L_Back_leg_IK02
+    400078: L_Front_leg_IK01
+    400080: L_Front_leg_IK02
+    400082: R_Back_leg_IK01
+    400084: R_Back_leg_IK02
+    400086: R_Front_leg_IK01
+    400088: R_Front_leg_IK02
+    4300000: Crawler
+    4300002: Crawler_Weapon
+    7400000: RunForwardWORootMotion
+    9500000: //RootNode
+    13700000: Crawler
+    13700002: Crawler_Weapon
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: RunForwardWORootMotion
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
