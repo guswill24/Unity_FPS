@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Isla.unity
     guid: 22ae79e6dbf39274499b454086a36062
+  - enabled: 1
+    path: Assets/Scenes/Demo_02.unity
+    guid: bc04b6e1f4dd1124db2ec4a5f792d023
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 2a09d75474f11a047a27412f3dca6a79, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 12e11fdbd41a3024bbb5a7704dc87ce8, type: 2}

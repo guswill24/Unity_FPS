@@ -32,23 +32,46 @@ public class CrawlerEnemy : MonoBehaviour
     public AudioClip muerteSound;
     public AudioSource audioSourcemuerte;
 
-    void Start()
+    private bool agentManuallyEnabled = false;
+    private bool awaitingNavMesh = true;
+    private float navMeshRetryTimer = 0f;
+    public float navMeshRetryInterval = 0.5f;
+
+    void Awake()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        if (agent != null && agent.enabled)
+            agent.enabled = false; // Evita error antes de ubicar en NavMesh
+    }
 
+    void Start()
+    {
         if(agent != null)
         {
+            // Intentar ubicar con un radio más generoso y sin Warp (agente aún deshabilitado)
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
-                agent.Warp(hit.position);
+            if (NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas))
+            {
+                transform.position = hit.position;
+            }
             else
             {
-                Debug.LogError("CrawlerEnemy no está sobre NavMesh. Deshabilitando NavMeshAgent.");
-                agent.enabled = false;
+                // Fallback: raycast hacia abajo y reintento de SamplePosition
+                RaycastHit rh;
+                Vector3 origin = transform.position + Vector3.up * 5f;
+                if (Physics.Raycast(origin, Vector3.down, out rh, 50f))
+                {
+                    transform.position = rh.point;
+                    if (NavMesh.SamplePosition(rh.point, out hit, 10f, NavMesh.AllAreas))
+                        transform.position = hit.position;
+                }
             }
 
-            agent.stoppingDistance = Mathf.Max(0.05f, attackRange * 0.5f);
+            // Intentar habilitar solo si realmente hay NavMesh cercano
+            TryEnableAgentOnNavMesh();
+            if (agent.enabled)
+                agent.stoppingDistance = Mathf.Max(0.05f, attackRange * 0.5f);
         }
 
         lastAttackTime = Time.time - attackCooldown;
@@ -73,6 +96,16 @@ public class CrawlerEnemy : MonoBehaviour
 
     void Update()
     {
+        if (awaitingNavMesh)
+        {
+            navMeshRetryTimer -= Time.deltaTime;
+            if (navMeshRetryTimer <= 0f)
+            {
+                TryEnableAgentOnNavMesh();
+                navMeshRetryTimer = navMeshRetryInterval;
+            }
+        }
+
         if (LevelManager.instance != null && !LevelManager.instance.isGameActive) return;
         if (isDead) return;
 
@@ -137,11 +170,31 @@ public class CrawlerEnemy : MonoBehaviour
         }
     }
 
+    private void TryEnableAgentOnNavMesh()
+    {
+        if (agent == null) { awaitingNavMesh = false; return; }
+        if (agent.enabled) { awaitingNavMesh = false; return; }
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 1.5f, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+            agent.enabled = true;
+            agentManuallyEnabled = true;
+            awaitingNavMesh = false;
+        }
+        else
+        {
+            awaitingNavMesh = true; // Seguir reintentando
+        }
+    }
+
     public void TakeDamage(float amount = 50f)
     {
         if(isDead) return;
 
         health -= amount;
+        Debug.Log("Impacto en Crawler '" + gameObject.name + "': daño " + amount + ", salud restante " + Mathf.Max(0f, health));
         anim?.SetTrigger("Take Damage");
 
         if(health <= 0f)

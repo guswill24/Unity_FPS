@@ -14,6 +14,9 @@ public class Gun : MonoBehaviour
     public AudioClip hitSound;
     public AudioSource audioSource;
 
+    [Header("Daño")]
+    public float damage = 10f;
+
     private RaycastHit showRaycastHit;
 
     void Update()
@@ -30,7 +33,7 @@ public class Gun : MonoBehaviour
         if (shootParticles != null)
             shootParticles.Play();
 
-        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out showRaycastHit, shotDistance, shotMask))
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out showRaycastHit, shotDistance, shotMask, QueryTriggerInteraction.Collide))
         {
             //Debug.Log("Shot hit: " + showRaycastHit.collider.name);
 
@@ -47,12 +50,37 @@ public class Gun : MonoBehaviour
             if (hitSound != null && audioSource != null)
                 audioSource.PlayOneShot(hitSound);
 
-            //  Si golpea un enemigo
-            CrawlerEnemy enemy = showRaycastHit.collider.GetComponentInParent<CrawlerEnemy>();
-            if (enemy != null)
+            //  Si golpea un Hitbox (prioritario)
+            var hb = showRaycastHit.collider.GetComponent<Hitbox>();
+            if (hb != null)
             {
-                enemy.TakeDamage(10f);
-                return; // 
+                hb.ApplyDamage(damage);
+                Debug.Log("Disparo impactó Hitbox en '" + hb.gameObject.name + "' (dueño='" + (hb.owner != null ? hb.owner.name : "null") + "') con daño " + damage);
+                return;
+            }
+
+            //  Si golpea un enemigo (genérico)
+            var ce = showRaycastHit.collider.GetComponentInParent<CrawlerEnemy>();
+            if (ce != null) { ce.TakeDamage(damage); Debug.Log("Disparo impactó Crawler '" + ce.name + "' con daño " + damage); return; }
+            var ge = showRaycastHit.collider.GetComponentInParent<GolemEnemy>();
+            if (ge != null) { ge.TakeDamage(damage); Debug.Log("Disparo impactó Golem '" + ge.name + "' con daño " + damage); return; }
+            var se = showRaycastHit.collider.GetComponentInParent<SkeletonEnemy>();
+            if (se != null) { se.TakeDamage(damage); Debug.Log("Disparo impactó Skeleton '" + se.name + "' con daño " + damage); return; }
+            var ez = showRaycastHit.collider.GetComponentInParent<EnemyZombi>();
+            if (ez != null) { ez.TakeDamage(damage); Debug.Log("Disparo impactó EnemyZombi '" + ez.name + "' con daño " + damage); return; }
+
+            //  Fallback por reflexión: busca método TakeDamage(float)
+            var mb = showRaycastHit.collider.GetComponentInParent<MonoBehaviour>();
+            if (mb != null)
+            {
+                var t = mb.GetType();
+                var m = t.GetMethod("TakeDamage", new System.Type[] { typeof(float) });
+                if (m != null)
+                {
+                    m.Invoke(mb, new object[] { damage });
+                    Debug.Log("Disparo impactó '" + mb.name + "' (" + t.Name + ") con daño " + damage + " via reflexión");
+                    return;
+                }
             }
 
             //  Si golpea un barril
